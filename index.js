@@ -1,14 +1,14 @@
 // TODO: Include packages needed for this application
 
-const inquirer = require("inquirer");
-const fs = require("fs)");
+const inquirer = require('inquirer');
+const fs = require('fs');
 const util = require("util");
 //Where did this come from?  Did I mean to do something with this?
 //const { features } = require("process");
 const codeBlock = "```";
-let licenseType = "";
+let license = "";
 
-const writeFileAsync = util.promisify(fs.writeFile);
+const generate = util.promisify(fs.writeFile);
 
 // Questions for user:
 const questions = [
@@ -45,7 +45,7 @@ function userPrompts() {
         {
             type: "input",
             message: questions[2],
-            name: "Title",
+            name: "title",
         },
         //project description
         {
@@ -77,7 +77,7 @@ function userPrompts() {
             type: "list",
             message: questions[7],
             choices: ["MIT", "GNU GPLv3", "Mozilla Public License 2.0", "Apache License 2.0", "Boost Software License 1.0", "None"],
-            name: "license"
+            name: "licenseType"
         },
         //Features
         {
@@ -104,17 +104,17 @@ function userPrompts() {
 //Choosing a license function, based on user input
 function licenseType(response) {
     if (response.license == "MIT"){
-        licenseType = "[![License: MIT](https://img.shields.io/badge/MIT-MITLicense-brightgreen)](https://choosealicense.com/licenses/apache-2.0/)";
+        license = "[![License: MIT](https://img.shields.io/badge/MIT-MITLicense-brightgreen)](https://choosealicense.com/licenses/apache-2.0/)";
     } if (response.license == "GNU GPLv3"){
-        licenseType = "[![License: GNU GPLv3](https://img.shields.io/badge/GNU%20GPLv3-GNU%20GPLv3License-yellowgreen)](https://choosealicense.com/licenses/agpl-3.0/";
+        license = "[![License: GNU GPLv3](https://img.shields.io/badge/GNU%20GPLv3-GNU%20GPLv3License-yellowgreen)](https://choosealicense.com/licenses/agpl-3.0/";
     } if (response.license == "Mozilla Public License 2.0"){
-        licenseType = "[![License: Mozilla Public License 2.0](https://img.shields.io/badge/MozillaPublicLicense-MPL%203.0-orange)](https://choosealicense.com/licenses/mpl-2.0/)";
+        license = "[![License: Mozilla Public License 2.0](https://img.shields.io/badge/MozillaPublicLicense-MPL%203.0-orange)](https://choosealicense.com/licenses/mpl-2.0/)";
     } if (response.license == "Apache License 2.0"){
-        licenseType = "[![License: Apache License 2.0](https://img.shields.io/badge/ApacheLicense-Apache2.0-red)](https://choosealicense.com/licenses/apache-2.0/";
+        license = "[![License: Apache License 2.0](https://img.shields.io/badge/ApacheLicense-Apache2.0-red)](https://choosealicense.com/licenses/apache-2.0/";
     } if (response.license == "Boost Software License 1.0"){
-        licenseType = "[![License: Boost Software License 1.0](https://img.shields.io/badge/Boost%20Software-Boost%20Software%20License%201.0-blue)](https://choosealicense.com/licenses/bsl-1.0/";
+        license = "[![License: Boost Software License 1.0](https://img.shields.io/badge/Boost%20Software-Boost%20Software%20License%201.0-blue)](https://choosealicense.com/licenses/bsl-1.0/";
     } else return;
-    return licenseType;
+    return license;
     }
 
 // TODO: Create a function to write README file
@@ -122,7 +122,7 @@ function licenseType(response) {
     function writeToFile(response) {
     return `
         # ${response.title}
-        ${licenseType}
+        ${license}
 
         ## Description
         ${response.description}
@@ -168,13 +168,13 @@ function licenseType(response) {
     
 }
 
-// TODO: Create a function to initialize app
+// Function to initialize app
 async function init() {
     try {
         const response = await userPrompts();
         licenseType(response);
         const readme = writeToFile(response);
-        await writeFileAsync("README.md", readme);
+        await generate('./dist/README.md', readme);
         console.log("README.md created");
         } catch(err) {
             console.log(err);
