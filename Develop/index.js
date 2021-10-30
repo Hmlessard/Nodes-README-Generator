@@ -1,8 +1,16 @@
 // TODO: Include packages needed for this application
 
 const inquirer = require("inquirer");
+const fs = require("fs)");
+const util = require("util");
+//Where did this come from?  Did I mean to do something with this?
+//const { features } = require("process");
+const codeBlock = "```";
+let licenseType = "";
 
-// TODO: Create an array of questions for user input
+const writeFileAsync = util.promisify(fs.writeFile);
+
+// Questions for user:
 const questions = [
     "What is your GitHub username?",
     "What is your email address?",
@@ -10,59 +18,83 @@ const questions = [
     "What is the description of this project?",
     "What command should be used to install dependencies?",
     "What does the user need to know about using the repo?",
+    "Who will be contributing to the repo?",
     "What kind of license should the project have?",
-    "What does the user need to know about contributing to the repo?",
+    "What features does this project have?",
+    "What guidelines do you have for contributors?",
     "What command will be used to run tests?"
 ];
 
 //Function to prompt user for answers:
 function userPrompts() {
     return inquirer.prompt([
+        //Username
         {
             type: "input",
-            message: "questions[0]",
+            message: questions[0],
             name: "username"
         },
+
+        //email
         {
             type: "input",
-            message: "questions[1]",
+            message: questions[1],
             name: "email"
         },
+        //title of project
         {
             type: "input",
-            message: "questions[2]",
+            message: questions[2],
             name: "Title",
         },
+        //project description
         {
             type: "input",
-            message: "questions[3]",
+            message: questions[3],
             name: "description",
         },
+        //Dependencies to install
         {
             type: "input",
-            message: "questions[4]",
+            message: questions[4],
             default: "npm i",
             name: "install",
         },
+        //instructions and examples for use of repo
         {
             type: "input",
-            message: "questions[5]",
+            message: questions[5],
             name: "usage",
         },
+        //Contributor Credits
+        {
+            type: "input",
+            message: questions[6],
+            name: "contributors"
+        },
+        //Licensing
         {
             type: "list",
-            message: "questions[6]",
+            message: questions[7],
             choices: ["MIT", "GNU GPLv3", "Mozilla Public License 2.0", "Apache License 2.0", "Boost Software License 1.0", "None"],
             name: "license"
         },
+        //Features
         {
             type: "input",
-            message: "questions[7]",
-            name: "contributing"
+            message: questions[8],
+            name: "features"
         },
+        //Contributing Guidelines
         {
             type: "input",
-            message: "questions[8]",
+            message: questions[9],
+            name: "guidelines"
+        },
+        //Testing
+        {
+            type: "input",
+            message: questions[10],
             default: "npm test",
             name: "test"
         },
@@ -86,11 +118,67 @@ function licenseType(response) {
     }
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// function writeToFile(response)
+    function writeToFile(response) {
+    return `
+        # ${response.title}
+        ${licenseType}
+
+        ## Description
+        ${response.description}
+
+        ## Table of Contents
+            *[Installation](#installation)
+            *[Usage](#usage)
+            *[Credits](#credits)
+            *[License](#license)
+            *[Badges](#badges)
+            *[Features](#features)
+            *[Contributing](#contributing)
+            *[Tests](#tests)
+
+
+        ## Installation
+        To install dependencies, run this command:
+            ${codeBlock}
+            ${response.install}
+            ${codeBlock}
+
+        ## Usage
+            ${response.usage}
+
+        ## Credits
+        ${response.contributors}
+
+        ## License
+            This project is licensed under ${response.license} license
+
+        ## Features
+
+        ## Contributing
+            
+
+        ## Tests
+            ${codeBlock}
+            ${response.test}
+            ${codeBlock}
+
+        ##Questions
+        If you have any questions, please feel free to contact me at ${response.email}.  You can view more of my work at ${response.username}(https://github/${response.username}).`;
+    
+}
 
 // TODO: Create a function to initialize app
-function init() {
-    
+async function init() {
+    try {
+        const response = await userPrompts();
+        licenseType(response);
+        const readme = writeToFile(response);
+        await writeFileAsync("README.md", readme);
+        console.log("README.md created");
+        } catch(err) {
+            console.log(err);
+    }
 }
 
 // Function call to initialize app
