@@ -117,7 +117,7 @@ function licenseType(response) {
     return license;
     }
 
-// TODO: Create a function to write README file
+
 // function writeToFile(response)
     function writeToFile(response) {
     return `
