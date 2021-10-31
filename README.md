@@ -1,58 +1,24 @@
+# README Generator
 
-        # undefined
-        function licenseType(response) {
-    if (response.license == "MIT"){
-        license = "[![License: MIT](https://img.shields.io/badge/MIT-MITLicense-brightgreen)](https://choosealicense.com/licenses/apache-2.0/)";
-    } if (response.license == "GNU GPLv3"){
-        license = "[![License: GNU GPLv3](https://img.shields.io/badge/GNU%20GPLv3-GNU%20GPLv3License-yellowgreen)](https://choosealicense.com/licenses/agpl-3.0/";
-    } if (response.license == "Mozilla Public License 2.0"){
-        license = "[![License: Mozilla Public License 2.0](https://img.shields.io/badge/MozillaPublicLicense-MPL%203.0-orange)](https://choosealicense.com/licenses/mpl-2.0/)";
-    } if (response.license == "Apache License 2.0"){
-        license = "[![License: Apache License 2.0](https://img.shields.io/badge/ApacheLicense-Apache2.0-red)](https://choosealicense.com/licenses/apache-2.0/";
-    } if (response.license == "Boost Software License 1.0"){
-        license = "[![License: Boost Software License 1.0](https://img.shields.io/badge/Boost%20Software-Boost%20Software%20License%201.0-blue)](https://choosealicense.com/licenses/bsl-1.0/";
-    } else return;
-    return license;
-    }
+## Description
+Using Node and javaScript, a series of prompts are given for the user to answer the questions relevant to generating a Readme document.  When all prompts have been answered, a README.md document will be generated from the terminal and into the dist folder.
 
-        ## Description
-        eaenklejwehleuhtiat
+## Usage
+This is a public repo
 
-        ## Table of Contents
-            *[Installation](#installation)
-            *[Usage](#usage)
-            *[Credits](#credits)
-            *[License](#license)
-            *[Badges](#badges)
-            *[Features](#features)
-            *[Contributing](#contributing)
-            *[Tests](#tests)
+## Credits
+I am the sole contributor to this project
 
+## License
+This project has no license at this time
 
-        ## Installation
-        To install dependencies, run this command:
-            ```
-            npm i
-            ```
+## Screenshots and Video
+Screenshot of code and output into README:
+![Layout of README](/assets/images/layout-of-README.png)
+Screenshot of terminal prompts the user is asked:
+![Terminal Screenshot](/assets/images/terminal-screenshot.png)
+Video of working terminal, generating README.md
+![Screencastify Video](/assets/images/Node-README.webm)
 
-        ## Usage
-            ioej
-
-        ## Credits
-        ejrarf
-
-        ## License
-            This project is licensed under undefined license
-
-        ## Features
-
-        ## Contributing
-            
-
-        ## Tests
-            ```
-            npm test
-            ```
-
-        ##Questions
-        If you have any questions, please feel free to contact me at joiear@ioeha.com.  You can view more of my work at kjhkjahe(https://github/kjhkjahe).
+## Questions
+If you have any questions, please feel free to contact me at lessard1228@gmail.com, or through GitHub

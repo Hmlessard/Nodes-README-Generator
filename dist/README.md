@@ -3,7 +3,7 @@
         
 
         ## Description
-        Using Node, a README.md document can be generated from the command line of the terminal
+        description goes here
 
         ## Table of Contents
             *[Installation](#installation)
@@ -23,10 +23,10 @@
             ```
 
         ## Usage
-            This is a public repo
+            open repo
 
         ## Credits
-        Credit to other contributors would go here
+        contributors go here
 
         ## License
             This project is licensed under undefined license
