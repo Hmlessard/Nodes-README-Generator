@@ -18,7 +18,7 @@ Screenshot of code and output into README:
 Screenshot of terminal prompts the user is asked:
 ![Terminal Screenshot](/assets/images/terminal-screenshot.png)
 Video of working terminal, generating README.md
-![Screencastify Video](/assets/images/Node-README.webm)
+![Screencastify Video](/assets/images/Node-README.webm)  (https://watch.screencastify.com/v/JLnQwgKlSPQNVs0zwpxb)
 
 ## Questions
 If you have any questions, please feel free to contact me at lessard1228@gmail.com, or through GitHub
